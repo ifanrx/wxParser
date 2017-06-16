@@ -3,7 +3,7 @@
 ---
 
 1. 把 `wxParser` 目录放到小程序项目的根目录下
-2. 在需要富文本解析的的 `WXML` 内引入 `wxParser/index.wxml`
+2. 在需要富文本解析的 `WXML` 内引入 `wxParser/index.wxml`
 3. 在页面 `JS` 文件内使用 `wxParser.parse(options)` 方法解析 `HTML` 内容
 4. 在小程序项目根目录的 `app.wxss` 内引入 `wxParser` 的默认样式库
 
