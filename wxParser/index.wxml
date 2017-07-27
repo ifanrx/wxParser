@@ -7,7 +7,7 @@
 </template>
 
 <template name="wxParserImg">
-  <image class="{{item.classStr}} wxParser-{{item.tag}}" data-from="{{item.from}}" data-src="{{item.attr.src}}"  data-idx="{{item.imgIndex}}"  src="{{item.attr.src}}" mode="aspectFill" bindload="loadedWxParserImg" bindtap="tapWxParserImg" style="{{item.styleStr}}"/>
+  <image class="{{item.classStr}} wxParser-{{item.tag}}" data-from="{{item.from}}" data-src="{{item.attr.src}}"  data-idx="{{item.imgIndex}}"  src="{{item.attr.src}}" mode="widthFix" bindload="loadedWxParserImg" bindtap="tapWxParserImg" style="{{item.styleStr}}"/>
 </template>
 
 <template name="wxParserText">
