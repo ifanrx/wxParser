@@ -23,18 +23,20 @@
 
 ---
 
-**WXML**
+**WXML：在需要用到富文本解析的文件夹下的 WXML 中引入 wxParser/index.wxml**
 
 ```
+// 将 WXML 引入需要富文本解析的文件下
 <import src="../../wxParser/index.wxml"/>
 <view class="wxParser">
   <template is="wxParser" data="{{wxParserData:richText.nodes}}"/>
 </view>
 ```
 
-**JS**
+**JS：在需要用到富文本解析的文件夹下的 JS 中引入 wxParser 渲染引擎**
 
 ```
+// 在
 const wxParser = require('../../wxParser/index');
 
 Page({
@@ -61,7 +63,7 @@ Page({
 })
 ```
 
-**WXSS**
+**WXSS：在根目录的 app.wxss 内引入 wxParser 的默认样式库**
 
 ```
 @import '../wxParser/index.wxss'
