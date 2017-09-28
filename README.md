@@ -36,7 +36,6 @@
 **JS：在需要用到富文本解析的文件夹下的 JS 中引入 wxParser 渲染引擎**
 
 ```
-// 在
 const wxParser = require('../../wxParser/index');
 
 Page({
@@ -66,7 +65,7 @@ Page({
 **WXSS：在根目录的 app.wxss 内引入 wxParser 的默认样式库**
 
 ```
-@import '../wxParser/index.wxss'
+@import 'wxParser/index.wxss'
 ```
 
 ### 注意
