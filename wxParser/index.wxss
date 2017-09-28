@@ -215,15 +215,11 @@
   flex: 1;
   padding: 5rpx;
   font-size: 28rpx;
+  border-top: 1rpx solid #e0e0e0;
   border-left: 1rpx solid #e0e0e0;
   word-break: break-all;
 }
 
-.wxParser-td:last {
-  border-top: 1rpx solid #e0e0e0;
-}
-
 .wxParser-th {
   background: #f0f0f0;
-  border-top: 1rpx solid #e0e0e0;
 }
