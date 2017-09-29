@@ -226,3 +226,8 @@
 .wxParser-th {
   background: #f0f0f0;
 }
+
+.wxParser-hr {
+  border: 1rpx solid #DDD;
+  margin: 20rpx 0;
+}
