@@ -155,6 +155,7 @@ const codeMap = {
   '&clubs;': '♣',
   '&hearts;': '♥',
   '&diams;': '♦',
+  '&#39;': "'"
 };
 
 /**

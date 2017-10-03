@@ -231,3 +231,12 @@
   border: 1rpx solid #DDD;
   margin: 20rpx 0;
 }
+
+.wxParser-pre, .wxParser-code {
+  margin: 5rpx 0;
+  padding: 5rpx 6rpx;
+  border-radius: 8rpx;
+  background: #f8f8f8;
+  font-size: 30rpx;
+  overflow-x: auto;
+}

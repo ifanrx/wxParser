@@ -70,7 +70,27 @@
         </block>
       </view>
     </block>
+
+    <!-- table 类型 -->
     <block wx:elif="{{item.tag == 'table'}}">
+      <view class="{{item.classStr}} wxParser-{{item.tag}}" style="{{item.styleStr}}">
+        <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
+          <template is="wxParser1" data="{{item}}"/>
+        </block>
+      </view>
+    </block>
+
+    <!-- pre 类型 -->
+    <block wx:elif="{{item.tag == 'pre'}}">
+      <view class="{{item.classStr}} wxParser-{{item.tag}}" style="{{item.styleStr}}">
+        <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
+          <template is="wxParser1" data="{{item}}"/>
+        </block>
+      </view>
+    </block>
+
+    <!-- code 类型 -->
+    <block wx:elif="{{item.tag == 'code'}}">
       <view class="{{item.classStr}} wxParser-{{item.tag}}" style="{{item.styleStr}}">
         <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
           <template is="wxParser1" data="{{item}}"/>
