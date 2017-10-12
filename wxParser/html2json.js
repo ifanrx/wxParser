@@ -3,6 +3,8 @@ const elements = require('./elements');
 const codeTransformation = require('./codeTransformation');
 const htmlParser = require('./htmlparser');
 
+let olTagCount = [];
+
 /**
  * 移除文档头信息
  * @param  {String} str   HTML 内容
@@ -47,6 +49,7 @@ const html2json = (html, bindName) => {
       if (parent.nodes === undefined) {
         parent.nodes = [];
       }
+      node.parent = parent.tag
       parent.nodes.push(node);
     }
   };
@@ -111,6 +114,16 @@ const html2json = (html, bindName) => {
         node.styleStr = nodeStyles.join(' ');
       }
 
+      if (node.tag == 'ol' || node.tag == 'ul') {
+        olTagCount.push(0)
+      }
+
+      if (node.tag == 'li') {
+        let len = olTagCount.length - 1
+        olTagCount[len] = olTagCount[len] + 1
+        node.order = olTagCount[len]
+      }
+
       // img 标签 添加额外数据
       if (node.tag === 'img') {
         node.imgIndex = results.images.length;
@@ -138,6 +151,10 @@ const html2json = (html, bindName) => {
 
       if (node.tag !== tag) {
         throw new Error('不匹配的关闭标签');
+      }
+
+      if (node.tag == 'ol' || node.tag == 'ul') {
+        olTagCount.pop()
       }
 
       putNode2ParentNodeList(node);

@@ -17,7 +17,6 @@
 </template>
 
 <!-- 入口模版 -->
-
 <template name="wxParser">
   <block wx:for="{{wxParserData}}" wx:key="">
     <template is="wxParser0" data="{{item}}"/>
@@ -36,8 +35,25 @@
         </block>
        </button>
     </block>
-    <!-- li 类型 -->
-    <block wx:elif="{{item.tag == 'li'}}">
+
+    <!-- ol li 类型 -->
+    <block wx:elif="{{item.tag == 'li' && item.parent == 'ol'}}">
+      <view class="{{item.classStr}} wxParser-ol-li">
+        <view class="{{item.classStr}} wxParser-ol-li-inner">
+          <view class="{{item.classStr}} wxParser-ol-li-text">
+            <view class="{{item.classStr}}">{{item.order}}.</view>
+          </view>
+          <view class="{{item.classStr}} wxParser-ol-li-text">
+            <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
+              <template is="wxParser1" data="{{item}}"/>
+            </block>
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <!-- ul li 类型 -->
+    <block wx:elif="{{item.tag == 'li' && item.parent == 'ul'}}">
       <view class="{{item.classStr}} wxParser-li">
         <view class="{{item.classStr}} wxParser-li-inner">
           <view class="{{item.classStr}} wxParser-li-text">
@@ -137,8 +153,25 @@
         </block>
        </button>
     </block>
-    <!-- li 类型 -->
-    <block wx:elif="{{item.tag == 'li'}}">
+
+    <!-- ol li 类型 -->
+    <block wx:elif="{{item.tag == 'li' && item.parent == 'ol'}}">
+      <view class="{{item.classStr}} wxParser-ol-li">
+        <view class="{{item.classStr}} wxParser-ol-li-inner">
+          <view class="{{item.classStr}} wxParser-ol-li-text">
+            <view class="{{item.classStr}}">{{item.order}}.</view>
+          </view>
+          <view class="{{item.classStr}} wxParser-ol-li-text">
+            <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
+              <template is="wxParser2" data="{{item}}"/>
+            </block>
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <!-- ul li 类型 -->
+    <block wx:elif="{{item.tag == 'li' && item.parent == 'ul'}}">
       <view class="{{item.classStr}} wxParser-li">
         <view class="{{item.classStr}} wxParser-li-inner">
           <view class="{{item.classStr}} wxParser-li-text">
@@ -167,6 +200,33 @@
     <block wx:elif="{{item.tag == 'a'}}">
       <view bindtap="tapWxParserA" class="wxParser-inline {{item.classStr}} wxParser-{{item.tag}}" data-href="{{item.attr.href}}"  style="{{item.styleStr}}">
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
+          <template is="wxParser2" data="{{item}}"/>
+        </block>
+      </view>
+    </block>
+
+    <!-- table 类型 -->
+    <block wx:elif="{{item.tag == 'table'}}">
+      <view class="{{item.classStr}} wxParser-{{item.tag}}" style="{{item.styleStr}}">
+        <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
+          <template is="wxParser2" data="{{item}}"/>
+        </block>
+      </view>
+    </block>
+
+    <!-- pre 类型 -->
+    <block wx:elif="{{item.tag == 'pre'}}">
+      <view class="{{item.classStr}} wxParser-{{item.tag}}" style="{{item.styleStr}}">
+        <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
+          <template is="wxParser2" data="{{item}}"/>
+        </block>
+      </view>
+    </block>
+
+    <!-- code 类型 -->
+    <block wx:elif="{{item.tag == 'code'}}">
+      <view class="{{item.classStr}} wxParser-{{item.tag}}" style="{{item.styleStr}}">
+        <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
           <template is="wxParser2" data="{{item}}"/>
         </block>
       </view>
@@ -210,8 +270,25 @@
         </block>
        </button>
     </block>
-    <!-- li 类型 -->
-    <block wx:elif="{{item.tag == 'li'}}">
+
+    <!-- ol li 类型 -->
+    <block wx:elif="{{item.tag == 'li' && item.parent == 'ol'}}">
+      <view class="{{item.classStr}} wxParser-ol-li">
+        <view class="{{item.classStr}} wxParser-ol-li-inner">
+          <view class="{{item.classStr}} wxParser-ol-li-text">
+            <view class="{{item.classStr}}">{{item.order}}.</view>
+          </view>
+          <view class="{{item.classStr}} wxParser-ol-li-text">
+            <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
+              <template is="wxParser3" data="{{item}}"/>
+            </block>
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <!-- ul li 类型 -->
+    <block wx:elif="{{item.tag == 'li' && item.parent == 'ul'}}">
       <view class="{{item.classStr}} wxParser-li">
         <view class="{{item.classStr}} wxParser-li-inner">
           <view class="{{item.classStr}} wxParser-li-text">
@@ -240,6 +317,33 @@
     <block wx:elif="{{item.tag == 'a'}}">
       <view bindtap="tapWxParserA" class="wxParser-inline {{item.classStr}} wxParser-{{item.tag}}" data-href="{{item.attr.href}}"  style="{{item.styleStr}}">
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
+          <template is="wxParser3" data="{{item}}"/>
+        </block>
+      </view>
+    </block>
+
+    <!-- table 类型 -->
+    <block wx:elif="{{item.tag == 'table'}}">
+      <view class="{{item.classStr}} wxParser-{{item.tag}}" style="{{item.styleStr}}">
+        <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
+          <template is="wxParser3" data="{{item}}"/>
+        </block>
+      </view>
+    </block>
+
+    <!-- pre 类型 -->
+    <block wx:elif="{{item.tag == 'pre'}}">
+      <view class="{{item.classStr}} wxParser-{{item.tag}}" style="{{item.styleStr}}">
+        <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
+          <template is="wxParser3" data="{{item}}"/>
+        </block>
+      </view>
+    </block>
+
+    <!-- code 类型 -->
+    <block wx:elif="{{item.tag == 'code'}}">
+      <view class="{{item.classStr}} wxParser-{{item.tag}}" style="{{item.styleStr}}">
+        <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
           <template is="wxParser3" data="{{item}}"/>
         </block>
       </view>
@@ -282,8 +386,25 @@
         </block>
        </button>
     </block>
-    <!-- li 类型 -->
-    <block wx:elif="{{item.tag == 'li'}}">
+
+    <!-- ol li 类型 -->
+    <block wx:elif="{{item.tag == 'li' && item.parent == 'ol'}}">
+      <view class="{{item.classStr}} wxParser-ol-li">
+        <view class="{{item.classStr}} wxParser-ol-li-inner">
+          <view class="{{item.classStr}} wxParser-ol-li-text">
+            <view class="{{item.classStr}}">{{item.order}}.</view>
+          </view>
+          <view class="{{item.classStr}} wxParser-ol-li-text">
+            <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
+              <template is="wxParser4" data="{{item}}"/>
+            </block>
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <!-- ul li 类型 -->
+    <block wx:elif="{{item.tag == 'li' && item.parent == 'ul'}}">
       <view class="{{item.classStr}} wxParser-li">
         <view class="{{item.classStr}} wxParser-li-inner">
           <view class="{{item.classStr}} wxParser-li-text">
@@ -312,6 +433,33 @@
     <block wx:elif="{{item.tag == 'a'}}">
       <view bindtap="tapWxParserA" class="wxParser-inline {{item.classStr}} wxParser-{{item.tag}}" data-href="{{item.attr.href}}"  style="{{item.styleStr}}">
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
+          <template is="wxParser4" data="{{item}}"/>
+        </block>
+      </view>
+    </block>
+
+    <!-- table 类型 -->
+    <block wx:elif="{{item.tag == 'table'}}">
+      <view class="{{item.classStr}} wxParser-{{item.tag}}" style="{{item.styleStr}}">
+        <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
+          <template is="wxParser4" data="{{item}}"/>
+        </block>
+      </view>
+    </block>
+
+    <!-- pre 类型 -->
+    <block wx:elif="{{item.tag == 'pre'}}">
+      <view class="{{item.classStr}} wxParser-{{item.tag}}" style="{{item.styleStr}}">
+        <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
+          <template is="wxParser4" data="{{item}}"/>
+        </block>
+      </view>
+    </block>
+
+    <!-- code 类型 -->
+    <block wx:elif="{{item.tag == 'code'}}">
+      <view class="{{item.classStr}} wxParser-{{item.tag}}" style="{{item.styleStr}}">
+        <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
           <template is="wxParser4" data="{{item}}"/>
         </block>
       </view>
@@ -354,8 +502,25 @@
         </block>
        </button>
     </block>
-    <!-- li 类型 -->
-    <block wx:elif="{{item.tag == 'li'}}">
+
+    <!-- ol li 类型 -->
+    <block wx:elif="{{item.tag == 'li' && item.parent == 'ol'}}">
+      <view class="{{item.classStr}} wxParser-ol-li">
+        <view class="{{item.classStr}} wxParser-ol-li-inner">
+          <view class="{{item.classStr}} wxParser-ol-li-text">
+            <view class="{{item.classStr}}">{{item.order}}.</view>
+          </view>
+          <view class="{{item.classStr}} wxParser-ol-li-text">
+            <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
+              <template is="wxParser5" data="{{item}}"/>
+            </block>
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <!-- ul li 类型 -->
+    <block wx:elif="{{item.tag == 'li' && item.parent == 'ul'}}">
       <view class="{{item.classStr}} wxParser-li">
         <view class="{{item.classStr}} wxParser-li-inner">
           <view class="{{item.classStr}} wxParser-li-text">
@@ -384,6 +549,33 @@
     <block wx:elif="{{item.tag == 'a'}}">
       <view bindtap="tapWxParserA" class="wxParser-inline {{item.classStr}} wxParser-{{item.tag}}" data-href="{{item.attr.href}}"  style="{{item.styleStr}}">
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
+          <template is="wxParser5" data="{{item}}"/>
+        </block>
+      </view>
+    </block>
+
+    <!-- table 类型 -->
+    <block wx:elif="{{item.tag == 'table'}}">
+      <view class="{{item.classStr}} wxParser-{{item.tag}}" style="{{item.styleStr}}">
+        <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
+          <template is="wxParser5" data="{{item}}"/>
+        </block>
+      </view>
+    </block>
+
+    <!-- pre 类型 -->
+    <block wx:elif="{{item.tag == 'pre'}}">
+      <view class="{{item.classStr}} wxParser-{{item.tag}}" style="{{item.styleStr}}">
+        <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
+          <template is="wxParser5" data="{{item}}"/>
+        </block>
+      </view>
+    </block>
+
+    <!-- code 类型 -->
+    <block wx:elif="{{item.tag == 'code'}}">
+      <view class="{{item.classStr}} wxParser-{{item.tag}}" style="{{item.styleStr}}">
+        <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
           <template is="wxParser5" data="{{item}}"/>
         </block>
       </view>
@@ -426,8 +618,25 @@
         </block>
        </button>
     </block>
-    <!-- li 类型 -->
-    <block wx:elif="{{item.tag == 'li'}}">
+
+    <!-- ol li 类型 -->
+    <block wx:elif="{{item.tag == 'li' && item.parent == 'ol'}}">
+      <view class="{{item.classStr}} wxParser-ol-li">
+        <view class="{{item.classStr}} wxParser-ol-li-inner">
+          <view class="{{item.classStr}} wxParser-ol-li-text">
+            <view class="{{item.classStr}}">{{item.order}}.</view>
+          </view>
+          <view class="{{item.classStr}} wxParser-ol-li-text">
+            <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
+              <template is="wxParser6" data="{{item}}"/>
+            </block>
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <!-- ul li 类型 -->
+    <block wx:elif="{{item.tag == 'li' && item.parent == 'ul'}}">
       <view class="{{item.classStr}} wxParser-li">
         <view class="{{item.classStr}} wxParser-li-inner">
           <view class="{{item.classStr}} wxParser-li-text">
@@ -456,6 +665,33 @@
     <block wx:elif="{{item.tag == 'a'}}">
       <view bindtap="tapWxParserA" class="wxParser-inline {{item.classStr}} wxParser-{{item.tag}}" data-href="{{item.attr.href}}"  style="{{item.styleStr}}">
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
+          <template is="wxParser6" data="{{item}}"/>
+        </block>
+      </view>
+    </block>
+
+    <!-- table 类型 -->
+    <block wx:elif="{{item.tag == 'table'}}">
+      <view class="{{item.classStr}} wxParser-{{item.tag}}" style="{{item.styleStr}}">
+        <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
+          <template is="wxParser6" data="{{item}}"/>
+        </block>
+      </view>
+    </block>
+
+    <!-- pre 类型 -->
+    <block wx:elif="{{item.tag == 'pre'}}">
+      <view class="{{item.classStr}} wxParser-{{item.tag}}" style="{{item.styleStr}}">
+        <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
+          <template is="wxParser6" data="{{item}}"/>
+        </block>
+      </view>
+    </block>
+
+    <!-- code 类型 -->
+    <block wx:elif="{{item.tag == 'code'}}">
+      <view class="{{item.classStr}} wxParser-{{item.tag}}" style="{{item.styleStr}}">
+        <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
           <template is="wxParser6" data="{{item}}"/>
         </block>
       </view>
@@ -498,8 +734,25 @@
         </block>
        </button>
     </block>
-    <!-- li 类型 -->
-    <block wx:elif="{{item.tag == 'li'}}">
+
+    <!-- ol li 类型 -->
+    <block wx:elif="{{item.tag == 'li' && item.parent == 'ol'}}">
+      <view class="{{item.classStr}} wxParser-ol-li">
+        <view class="{{item.classStr}} wxParser-ol-li-inner">
+          <view class="{{item.classStr}} wxParser-ol-li-text">
+            <view class="{{item.classStr}}">{{item.order}}.</view>
+          </view>
+          <view class="{{item.classStr}} wxParser-ol-li-text">
+            <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
+              <template is="wxParser7" data="{{item}}"/>
+            </block>
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <!-- ul li 类型 -->
+    <block wx:elif="{{item.tag == 'li' && item.parent == 'ul'}}">
       <view class="{{item.classStr}} wxParser-li">
         <view class="{{item.classStr}} wxParser-li-inner">
           <view class="{{item.classStr}} wxParser-li-text">
@@ -528,6 +781,33 @@
     <block wx:elif="{{item.tag == 'a'}}">
       <view bindtap="tapWxParserA" class="wxParser-inline {{item.classStr}} wxParser-{{item.tag}}" data-href="{{item.attr.href}}"  style="{{item.styleStr}}">
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
+          <template is="wxParser7" data="{{item}}"/>
+        </block>
+      </view>
+    </block>
+
+    <!-- table 类型 -->
+    <block wx:elif="{{item.tag == 'table'}}">
+      <view class="{{item.classStr}} wxParser-{{item.tag}}" style="{{item.styleStr}}">
+        <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
+          <template is="wxParser7" data="{{item}}"/>
+        </block>
+      </view>
+    </block>
+
+    <!-- pre 类型 -->
+    <block wx:elif="{{item.tag == 'pre'}}">
+      <view class="{{item.classStr}} wxParser-{{item.tag}}" style="{{item.styleStr}}">
+        <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
+          <template is="wxParser7" data="{{item}}"/>
+        </block>
+      </view>
+    </block>
+
+    <!-- code 类型 -->
+    <block wx:elif="{{item.tag == 'code'}}">
+      <view class="{{item.classStr}} wxParser-{{item.tag}}" style="{{item.styleStr}}">
+        <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
           <template is="wxParser7" data="{{item}}"/>
         </block>
       </view>
@@ -569,8 +849,25 @@
         </block>
        </button>
     </block>
-    <!-- li 类型 -->
-    <block wx:elif="{{item.tag == 'li'}}">
+
+    <!-- ol li 类型 -->
+    <block wx:elif="{{item.tag == 'li' && item.parent == 'ol'}}">
+      <view class="{{item.classStr}} wxParser-ol-li">
+        <view class="{{item.classStr}} wxParser-ol-li-inner">
+          <view class="{{item.classStr}} wxParser-ol-li-text">
+            <view class="{{item.classStr}}">{{item.order}}.</view>
+          </view>
+          <view class="{{item.classStr}} wxParser-ol-li-text">
+            <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
+              <template is="wxParser8" data="{{item}}"/>
+            </block>
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <!-- ul li 类型 -->
+    <block wx:elif="{{item.tag == 'li' && item.parent == 'ul'}}">
       <view class="{{item.classStr}} wxParser-li">
         <view class="{{item.classStr}} wxParser-li-inner">
           <view class="{{item.classStr}} wxParser-li-text">
@@ -599,6 +896,33 @@
     <block wx:elif="{{item.tag == 'a'}}">
       <view bindtap="tapWxParserA" class="wxParser-inline {{item.classStr}} wxParser-{{item.tag}}" data-href="{{item.attr.href}}"  style="{{item.styleStr}}">
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
+          <template is="wxParser8" data="{{item}}"/>
+        </block>
+      </view>
+    </block>
+
+    <!-- table 类型 -->
+    <block wx:elif="{{item.tag == 'table'}}">
+      <view class="{{item.classStr}} wxParser-{{item.tag}}" style="{{item.styleStr}}">
+        <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
+          <template is="wxParser8" data="{{item}}"/>
+        </block>
+      </view>
+    </block>
+
+    <!-- pre 类型 -->
+    <block wx:elif="{{item.tag == 'pre'}}">
+      <view class="{{item.classStr}} wxParser-{{item.tag}}" style="{{item.styleStr}}">
+        <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
+          <template is="wxParser8" data="{{item}}"/>
+        </block>
+      </view>
+    </block>
+
+    <!-- code 类型 -->
+    <block wx:elif="{{item.tag == 'code'}}">
+      <view class="{{item.classStr}} wxParser-{{item.tag}}" style="{{item.styleStr}}">
+        <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
           <template is="wxParser8" data="{{item}}"/>
         </block>
       </view>
@@ -641,8 +965,25 @@
         </block>
        </button>
     </block>
-    <!-- li 类型 -->
-    <block wx:elif="{{item.tag == 'li'}}">
+
+    <!-- ol li 类型 -->
+    <block wx:elif="{{item.tag == 'li' && item.parent == 'ol'}}">
+      <view class="{{item.classStr}} wxParser-ol-li">
+        <view class="{{item.classStr}} wxParser-ol-li-inner">
+          <view class="{{item.classStr}} wxParser-ol-li-text">
+            <view class="{{item.classStr}}">{{item.order}}.</view>
+          </view>
+          <view class="{{item.classStr}} wxParser-ol-li-text">
+            <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
+              <template is="wxParser9" data="{{item}}"/>
+            </block>
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <!-- ul li 类型 -->
+    <block wx:elif="{{item.tag == 'li' && item.parent == 'ul'}}">
       <view class="{{item.classStr}} wxParser-li">
         <view class="{{item.classStr}} wxParser-li-inner">
           <view class="{{item.classStr}} wxParser-li-text">
@@ -671,6 +1012,33 @@
     <block wx:elif="{{item.tag == 'a'}}">
       <view bindtap="tapWxParserA" class="wxParser-inline {{item.classStr}} wxParser-{{item.tag}}" data-href="{{item.attr.href}}"  style="{{item.styleStr}}">
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
+          <template is="wxParser9" data="{{item}}"/>
+        </block>
+      </view>
+    </block>
+
+   <!-- table 类型 -->
+    <block wx:elif="{{item.tag == 'table'}}">
+      <view class="{{item.classStr}} wxParser-{{item.tag}}" style="{{item.styleStr}}">
+        <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
+          <template is="wxParser9" data="{{item}}"/>
+        </block>
+      </view>
+    </block>
+
+    <!-- pre 类型 -->
+    <block wx:elif="{{item.tag == 'pre'}}">
+      <view class="{{item.classStr}} wxParser-{{item.tag}}" style="{{item.styleStr}}">
+        <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
+          <template is="wxParser9" data="{{item}}"/>
+        </block>
+      </view>
+    </block>
+
+    <!-- code 类型 -->
+    <block wx:elif="{{item.tag == 'code'}}">
+      <view class="{{item.classStr}} wxParser-{{item.tag}}" style="{{item.styleStr}}">
+        <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
           <template is="wxParser9" data="{{item}}"/>
         </block>
       </view>
@@ -713,8 +1081,25 @@
         </block>
        </button>
     </block>
-    <!-- li 类型 -->
-    <block wx:elif="{{item.tag == 'li'}}">
+
+    <!-- ol li 类型 -->
+    <block wx:elif="{{item.tag == 'li' && item.parent == 'ol'}}">
+      <view class="{{item.classStr}} wxParser-ol-li">
+        <view class="{{item.classStr}} wxParser-ol-li-inner">
+          <view class="{{item.classStr}} wxParser-ol-li-text">
+            <view class="{{item.classStr}}">{{item.order}}.</view>
+          </view>
+          <view class="{{item.classStr}} wxParser-ol-li-text">
+            <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
+              <template is="wxParser10" data="{{item}}"/>
+            </block>
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <!-- ul li 类型 -->
+    <block wx:elif="{{item.tag == 'li' && item.parent == 'ul'}}">
       <view class="{{item.classStr}} wxParser-li">
         <view class="{{item.classStr}} wxParser-li-inner">
           <view class="{{item.classStr}} wxParser-li-text">
@@ -743,6 +1128,33 @@
     <block wx:elif="{{item.tag == 'a'}}">
       <view bindtap="tapWxParserA" class="wxParser-inline {{item.classStr}} wxParser-{{item.tag}}" data-href="{{item.attr.href}}"  style="{{item.styleStr}}">
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
+          <template is="wxParser10" data="{{item}}"/>
+        </block>
+      </view>
+    </block>
+
+    <!-- table 类型 -->
+    <block wx:elif="{{item.tag == 'table'}}">
+      <view class="{{item.classStr}} wxParser-{{item.tag}}" style="{{item.styleStr}}">
+        <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
+          <template is="wxParser10" data="{{item}}"/>
+        </block>
+      </view>
+    </block>
+
+    <!-- pre 类型 -->
+    <block wx:elif="{{item.tag == 'pre'}}">
+      <view class="{{item.classStr}} wxParser-{{item.tag}}" style="{{item.styleStr}}">
+        <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
+          <template is="wxParser10" data="{{item}}"/>
+        </block>
+      </view>
+    </block>
+
+    <!-- code 类型 -->
+    <block wx:elif="{{item.tag == 'code'}}">
+      <view class="{{item.classStr}} wxParser-{{item.tag}}" style="{{item.styleStr}}">
+        <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
           <template is="wxParser10" data="{{item}}"/>
         </block>
       </view>
@@ -785,8 +1197,25 @@
         </block>
        </button>
     </block>
-    <!-- li 类型 -->
-    <block wx:elif="{{item.tag == 'li'}}">
+
+    <!-- ol li 类型 -->
+    <block wx:elif="{{item.tag == 'li' && item.parent == 'ol'}}">
+      <view class="{{item.classStr}} wxParser-ol-li">
+        <view class="{{item.classStr}} wxParser-ol-li-inner">
+          <view class="{{item.classStr}} wxParser-ol-li-text">
+            <view class="{{item.classStr}}">{{item.order}}.</view>
+          </view>
+          <view class="{{item.classStr}} wxParser-ol-li-text">
+            <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
+              <template is="wxParser11" data="{{item}}"/>
+            </block>
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <!-- ul li 类型 -->
+    <block wx:elif="{{item.tag == 'li' && item.parent == 'ul'}}">
       <view class="{{item.classStr}} wxParser-li">
         <view class="{{item.classStr}} wxParser-li-inner">
           <view class="{{item.classStr}} wxParser-li-text">
@@ -815,6 +1244,33 @@
     <block wx:elif="{{item.tag == 'a'}}">
       <view bindtap="tapWxParserA" class="wxParser-inline {{item.classStr}} wxParser-{{item.tag}}" data-href="{{item.attr.href}}"  style="{{item.styleStr}}">
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
+          <template is="wxParser11" data="{{item}}"/>
+        </block>
+      </view>
+    </block>
+
+    <!-- table 类型 -->
+    <block wx:elif="{{item.tag == 'table'}}">
+      <view class="{{item.classStr}} wxParser-{{item.tag}}" style="{{item.styleStr}}">
+        <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
+          <template is="wxParser11" data="{{item}}"/>
+        </block>
+      </view>
+    </block>
+
+    <!-- pre 类型 -->
+    <block wx:elif="{{item.tag == 'pre'}}">
+      <view class="{{item.classStr}} wxParser-{{item.tag}}" style="{{item.styleStr}}">
+        <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
+          <template is="wxParser11" data="{{item}}"/>
+        </block>
+      </view>
+    </block>
+
+    <!-- code 类型 -->
+    <block wx:elif="{{item.tag == 'code'}}">
+      <view class="{{item.classStr}} wxParser-{{item.tag}}" style="{{item.styleStr}}">
+        <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
           <template is="wxParser11" data="{{item}}"/>
         </block>
       </view>
@@ -857,8 +1313,25 @@
         </block>
        </button>
     </block>
-    <!-- li 类型 -->
-    <block wx:elif="{{item.tag == 'li'}}">
+
+    <!-- ol li 类型 -->
+    <block wx:elif="{{item.tag == 'li' && item.parent == 'ol'}}">
+      <view class="{{item.classStr}} wxParser-ol-li">
+        <view class="{{item.classStr}} wxParser-ol-li-inner">
+          <view class="{{item.classStr}} wxParser-ol-li-text">
+            <view class="{{item.classStr}}">{{item.order}}.</view>
+          </view>
+          <view class="{{item.classStr}} wxParser-ol-li-text">
+            <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
+              <template is="wxParser12" data="{{item}}"/>
+            </block>
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <!-- ul li 类型 -->
+    <block wx:elif="{{item.tag == 'li' && item.parent == 'ul'}}">
       <view class="{{item.classStr}} wxParser-li">
         <view class="{{item.classStr}} wxParser-li-inner">
           <view class="{{item.classStr}} wxParser-li-text">
@@ -887,6 +1360,33 @@
     <block wx:elif="{{item.tag == 'a'}}">
       <view bindtap="tapWxParserA" class="wxParser-inline {{item.classStr}} wxParser-{{item.tag}}" data-href="{{item.attr.href}}"  style="{{item.styleStr}}">
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
+          <template is="wxParser12" data="{{item}}"/>
+        </block>
+      </view>
+    </block>
+
+    <!-- table 类型 -->
+    <block wx:elif="{{item.tag == 'table'}}">
+      <view class="{{item.classStr}} wxParser-{{item.tag}}" style="{{item.styleStr}}">
+        <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
+          <template is="wxParser12" data="{{item}}"/>
+        </block>
+      </view>
+    </block>
+
+    <!-- pre 类型 -->
+    <block wx:elif="{{item.tag == 'pre'}}">
+      <view class="{{item.classStr}} wxParser-{{item.tag}}" style="{{item.styleStr}}">
+        <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
+          <template is="wxParser12" data="{{item}}"/>
+        </block>
+      </view>
+    </block>
+
+    <!-- code 类型 -->
+    <block wx:elif="{{item.tag == 'code'}}">
+      <view class="{{item.classStr}} wxParser-{{item.tag}}" style="{{item.styleStr}}">
+        <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
           <template is="wxParser12" data="{{item}}"/>
         </block>
       </view>

@@ -200,6 +200,25 @@
   margin-right: 5rpx;
 }
 
+.wxParser-ol {
+  margin: 20rpx 10rpx;
+}
+
+.wxParser-ol-li {
+  margin: 10rpx 0;
+}
+
+.wxParser-ol-li,
+.wxParser-ol-li-inner {
+  display: flex;
+  align-items: baseline;
+}
+
+.wxParser-ol-li-text {
+  margin-right: 12rpx;
+  line-height: 1em;
+}
+
 .wxParser-hidden {
   display: none;
 }
