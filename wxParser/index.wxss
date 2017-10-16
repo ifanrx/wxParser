@@ -253,9 +253,10 @@
 
 .wxParser-pre, .wxParser-code {
   margin: 5rpx 0;
-  padding: 5rpx 6rpx;
+  padding: 10rpx 10rpx;
   border-radius: 8rpx;
   background: #f8f8f8;
   font-size: 30rpx;
+  line-height: 40rpx;
   overflow-x: auto;
 }
