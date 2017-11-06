@@ -132,6 +132,20 @@ const html2json = (html, bindName) => {
         results.imageUrls.push(node.attr.src);
       }
 
+      if (node.tag == 'video') {
+        let params = node.attr['data-extra']
+        if (params) {
+          params = params.replace(new RegExp('&quot;', 'g'), '"');
+          params = JSON.parse(params)
+          node.attr.controls = params.controls == false ? false : true
+          node.attr.autoplay = params.autoplay ? true : false
+          node.attr.loop = params.loop ? true : false
+          node.attr.muted = params.muted ? true : false
+          node.attr['page-gesture'] = params['page-gesture'] ? true : false
+          node.attr.objectFit = params.objectFit ? params.objectFit : 'contain'
+        }
+      }
+
       if (isUnary) {
         // 自闭合标签，比如 <img src="https://github.com/pacochan/wxParser.png"/>
         // 这种类型不会进入 end 函数或者 text 函数处理，在 start 函数放入到父元素的 nodes 列表即可
