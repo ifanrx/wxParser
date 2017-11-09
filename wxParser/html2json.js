@@ -133,17 +133,10 @@ const html2json = (html, bindName) => {
       }
 
       if (node.tag == 'video') {
-        let params = node.attr['data-extra']
-        if (params) {
-          params = params.replace(new RegExp('&quot;', 'g'), '"');
-          params = JSON.parse(params)
-          node.attr.controls = params.controls == false ? false : true
-          node.attr.autoplay = params.autoplay ? true : false
-          node.attr.loop = params.loop ? true : false
-          node.attr.muted = params.muted ? true : false
-          node.attr['page-gesture'] = params['page-gesture'] ? true : false
-          node.attr.objectFit = params.objectFit ? params.objectFit : 'contain'
-        }
+        node.attr.controls = node.attr.controls === 'true'
+        node.attr.autoplay = node.attr.autoplay === 'true'
+        node.attr.loop = node.attr.loop === 'true'
+        node.attr.muted = node.attr.muted === 'true'
       }
 
       if (isUnary) {
