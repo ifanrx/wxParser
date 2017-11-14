@@ -19,7 +19,10 @@
       controls="{{item.attr.controls}}"
       autoplay="{{item.attr.autoplay}}"
       loop="{{item.attr.loop}}"
-      muted="{{item.attr.muted}}">
+      muted="{{item.attr.muted}}"
+      poster="{{item.attr.poster}}"
+      name="{{item.attr.name}}"
+      author="{{item.attr.author}}">
     </audio>
   </view>
 </template>
