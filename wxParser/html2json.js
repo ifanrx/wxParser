@@ -132,11 +132,25 @@ const html2json = (html, bindName) => {
         results.imageUrls.push(node.attr.src);
       }
 
-      if (node.tag == 'video') {
+      if (node.tag === 'video' || node.tag === 'audio') {
         node.attr.controls = node.attr.controls === 'true'
         node.attr.autoplay = node.attr.autoplay === 'true'
         node.attr.loop = node.attr.loop === 'true'
+      }
+
+      if (node.tag === 'video') {
         node.attr.muted = node.attr.muted === 'true'
+      }
+
+      if (node.tag === 'audio') {
+        let params = node.attr['data-extra']
+        if (params) {
+           params = params.replace(new RegExp('&quot;', 'g'), '"');
+           params = JSON.parse(params)
+           node.attr.poster = params.poster
+           node.attr.name = params.name
+           node.attr.author = params.author
+        }
       }
 
       if (isUnary) {
@@ -161,6 +175,21 @@ const html2json = (html, bindName) => {
 
       if (node.tag == 'ol' || node.tag == 'ul') {
         olTagCount.pop()
+      }
+
+      if (node.tag === 'video' || node.tag === 'audio') {
+        if (!node.attr.src) {
+          let nodes = node.nodes
+          let len = nodes.length
+          let src = ''
+          for (let i = 0; i < len; i++) {
+            if (nodes[i].tag === 'source') {
+              src = nodes[i].attr.src
+              break
+            }
+          }
+          node.attr.src = src
+        }
       }
 
       putNode2ParentNodeList(node);
