@@ -133,13 +133,13 @@ const html2json = (html, bindName) => {
       }
 
       if (node.tag === 'video' || node.tag === 'audio') {
-        node.attr.controls = node.attr.controls === 'true'
-        node.attr.autoplay = node.attr.autoplay === 'true'
-        node.attr.loop = node.attr.loop === 'true'
+        node.attr.controls = !node.attr.controls ? false : true
+        node.attr.autoplay = !node.attr.autoplay ? false : true
+        node.attr.loop = !node.attr.loop ? false : true
       }
 
       if (node.tag === 'video') {
-        node.attr.muted = node.attr.muted === 'true'
+        node.attr.muted = !node.attr.muted ? false : true
       }
 
       if (node.tag === 'audio') {
