@@ -141,6 +141,16 @@
   width: 100%;
 }
 
+.wxParser-audio {
+  text-align: center;
+  margin: 10rpx 0;
+}
+
+.wxParser-audio-audio {
+  display: flex;
+  flex-direction: column;
+}
+
 .wxParser-img {
   overflow: hidden;
   max-width: 100%;
