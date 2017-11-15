@@ -132,6 +132,27 @@ const html2json = (html, bindName) => {
         results.imageUrls.push(node.attr.src);
       }
 
+      if (node.tag === 'video' || node.tag === 'audio') {
+        node.attr.controls = !node.attr.controls ? false : true
+        node.attr.autoplay = !node.attr.autoplay ? false : true
+        node.attr.loop = !node.attr.loop ? false : true
+      }
+
+      if (node.tag === 'video') {
+        node.attr.muted = !node.attr.muted ? false : true
+      }
+
+      if (node.tag === 'audio') {
+        let params = node.attr['data-extra']
+        if (params) {
+           params = params.replace(new RegExp('&quot;', 'g'), '"');
+           params = JSON.parse(params)
+           node.attr.poster = params.poster
+           node.attr.name = params.name
+           node.attr.author = params.author
+        }
+      }
+
       if (isUnary) {
         // 自闭合标签，比如 <img src="https://github.com/pacochan/wxParser.png"/>
         // 这种类型不会进入 end 函数或者 text 函数处理，在 start 函数放入到父元素的 nodes 列表即可
@@ -154,6 +175,21 @@ const html2json = (html, bindName) => {
 
       if (node.tag == 'ol' || node.tag == 'ul') {
         olTagCount.pop()
+      }
+
+      if (node.tag === 'video' || node.tag === 'audio') {
+        if (!node.attr.src) {
+          let nodes = node.nodes
+          let len = nodes.length
+          let src = ''
+          for (let i = 0; i < len; i++) {
+            if (nodes[i].tag === 'source') {
+              src = nodes[i].attr.src
+              break
+            }
+          }
+          node.attr.src = src
+        }
       }
 
       putNode2ParentNodeList(node);
