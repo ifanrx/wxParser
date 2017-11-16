@@ -149,6 +149,7 @@
 .wxParser-audio-audio {
   display: flex;
   flex-direction: column;
+  text-align: left;
 }
 
 .wxParser-img {
