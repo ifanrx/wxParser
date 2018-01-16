@@ -39,15 +39,11 @@
 const wxParser = require('../../wxParser/index');
 
 Page({
-  data: {},
   onLoad: function () {
-    let that = this;
-    let html = `<div style="color: #f00;">hello, wxParser!</div>`;
-
     wxParser.parse({
       bind: 'richText',
-      html: html,
-      target: that,
+      html: `<div style="color: #f00;">hello, wxParser!</div>`,
+      target: this,
       enablePreviewImage: false, // 禁用图片预览功能
       tapLink: (url) => { // 点击超链接时的回调函数
         // url 就是 HTML 富文本中 a 标签的 href 属性值
@@ -62,10 +58,10 @@ Page({
 })
 ```
 
-**WXSS：在根目录的 app.wxss 内引入 wxParser 的默认样式库**
+**WXSS：在需要使用 wxparser 的页面的 wxss 文件中引入 wxParser 样式库，或者直接在根目录的 app.wxss 内引入**
 
 ```
-@import 'wxParser/index.wxss'
+@import '../../wxParser/index.wxss'
 ```
 
 ### 注意
