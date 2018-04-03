@@ -1,3 +1,5 @@
+* 注：wxParser 已提供小程序插件版 [wxParser-plugin](https://github.com/ifanrx/wxParser-plugin)，使用起来更加简单快捷
+
 ### 步骤
 
 ---
