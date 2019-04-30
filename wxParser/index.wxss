@@ -3,8 +3,7 @@
  */
 
 .wxParser-div,
-.wxParser-p,
-{
+.wxParser-p {
   word-break: break-all;
   overflow: auto;
   max-width: 100%;
