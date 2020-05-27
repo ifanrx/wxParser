@@ -155,7 +155,6 @@ const codeMap = {
   '&clubs;': '♣',
   '&hearts;': '♥',
   '&diams;': '♦',
-  '&#39;': "'"
 };
 
 /**
@@ -164,6 +163,16 @@ const codeMap = {
  * @return {String}     转换后的字符串
  */
 const transform = (str) => {
+  // 替换 emoji 和特殊符号
+  var symbol = /&#(\d+);/gm;
+  let m;
+  while ((m = symbol.exec(str)) !== null) {
+      if (m.index === symbol.lastIndex) {
+        symbol.lastIndex++;
+      }
+      str = str.replace(new RegExp(`&#${m[1]};`, 'g'), String.fromCodePoint(m[1]))
+  }
+
   for (let code in codeMap) {
     str = str.replace(new RegExp(code, 'g'), codeMap[code]);
   }
